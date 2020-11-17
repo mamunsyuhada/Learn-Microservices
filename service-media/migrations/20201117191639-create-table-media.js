@@ -10,9 +10,8 @@ module.exports = {
      */
     return queryInterface.createTable('media', { 
       id: {
-        type:Sequelize.INTEGER ,
+        type:Sequelize.STRING ,
         primaryKey: true,
-        autoIncrement: true,
         allowNull: false
       },
       image: {

@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
     const Media = sequelize.define('Media', {
         id:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             primaryKey: true,
-            autoIncrement: true,
             allowNull: false
         },
         image: {
+            field:'image',
             type: DataTypes.STRING,
             allowNull: false
         },
