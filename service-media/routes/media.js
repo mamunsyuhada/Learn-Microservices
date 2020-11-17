@@ -8,7 +8,27 @@ const { v4: uuidv4 } = require('uuid');
 
 const {Media} = require('../models');
 
-/* GET users listing. */
+/******** get images ********/ 
+router.get('/', async(req, res) => {
+  const media = await Media.findAll({
+    attributes:['id', 'image']
+  });
+  // console.log(media);
+
+  const mappedMedia = media.map((m) => {
+    // console.log(m);
+    m.image = `${req.get('host')}/${m.image}`
+    return m
+  })
+
+  return res.json({
+    status: 'success',
+    data: mappedMedia
+  });
+
+})
+
+/******** insert image ********/ 
 router.post('/', function(req, res) {
   const image = req.body.image;
   if(!isBase64(image, {mimeRequired: true})){
@@ -26,7 +46,7 @@ router.post('/', function(req, res) {
     const filename = filepath.split('/').pop();
     const media = await Media.create({
       id: uuidv4(),
-      image: `image/${filename}`
+      image: `images/${filename}`
     });
     return res.json({
       success: 'ok',
