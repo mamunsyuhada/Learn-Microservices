@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('media')
-});
+const mediaHandler = require('./handler/media')
+
+router.post('/', mediaHandler.create);
+router.get('/', mediaHandler.getAll)
 
 module.exports = router;

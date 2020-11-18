@@ -1,12 +1,44 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs')
 
 const isBase64 = require('is-base64');
 const base64Img = require('base64-img');
 
 const { v4: uuidv4 } = require('uuid');
 
-const {Media} = require('../models');
+const { Media } = require('../models');
+
+/******** delete image ********/ 
+router.delete('/', async(req, res)=>{
+  const id = req.query.id;
+  const media = await Media.findByPk(id);
+
+  if(!media){
+    return res.status(404).json({
+      status:'error',
+      message:'media not found'
+    });
+  }
+
+  fs.unlink(`./public/${media.image}`, async (err)=>{
+    if (err){
+      return res.status(404).json({
+        status:'error',
+        message: 'media not found'
+      });
+    }
+
+    await media.destroy();
+
+    return res.json({
+      status:'succes',
+      message: 'image deleted'
+    })
+  })
+
+
+})
 
 /******** get images ********/ 
 router.get('/', async(req, res) => {
