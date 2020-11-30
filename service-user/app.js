@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const usersRouter = require('./routes/users');
+const refreshTonkensRouter = require('./routes/refreshTokens');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/users', usersRouter);
+app.use('/refresh_tokens', refreshTonkensRouter);
 
 console.log('------INFO------ Service User');
 

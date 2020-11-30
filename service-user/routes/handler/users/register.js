@@ -1,4 +1,3 @@
-
 const bcrypt = require('bcrypt');
 const Validator = require('fastest-validator');
 const { v4: uuidv4 } = require('uuid');
