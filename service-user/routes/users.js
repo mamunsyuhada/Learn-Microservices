@@ -5,6 +5,7 @@ const usersHandler = require('./handler/users');
 
 router.post('/register/:role', usersHandler.register)
 router.post('/login', usersHandler.login)
-router.put('/update/:id', usersHandler.update)
+router.put('/:id', usersHandler.update)
+router.get('/:id', usersHandler.getUser)
 
 module.exports = router;
