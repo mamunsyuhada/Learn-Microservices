@@ -16,4 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/media', mediaRouter);
 
+console.log('------INFO------ Service Media');
+
 module.exports = app;
