@@ -77,7 +77,7 @@ router.post('/', function(req, res) {
 
     const filename = filepath.split('/').pop();
     const media = await Media.create({
-      id: uuidv4(),
+      id: `media-${uuidv4()}`,
       image: `images/${filename}`
     });
     return res.json({
